@@ -1,0 +1,35 @@
+Configuration:
+  status: warn
+
+  Properties:
+    Property:
+      name: log-path
+      value: "output/logs"
+
+  Appenders:
+
+    Console:
+      name: LogToConsole
+      target: SYSTEM_OUT
+      PatternLayout:
+        Pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+    RollingFile:
+      name: LogToRollingFile
+      fileName: ${log-path}/logfile.log
+      filePattern: "logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz"
+      PatternLayout:
+        pattern: "[%-5level] %d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+      Policies:
+        SizeBasedTriggeringPolicy:
+          size: 10MB
+      DefaultRollOverStrategy:
+        max: 10
+
+  Loggers:
+
+    Root:
+      level: info
+      AppenderRef:
+        - ref: LogToConsole
+        - ref: LogToRollingFile

@@ -1,0 +1,9 @@
+---
+update: false #Set false to generate dataset from scratch, set true to update it
+dataBaseExport: [neo4j] # Database to export : postgres, neo4j
+thread: 12 # Number of thread to do parallelization
+# For Neo4J
+neo4jUri: "bolt://localhost:7687/"
+neo4jUser: "neo4j"
+neo4jPassword: "Password1"
+####
